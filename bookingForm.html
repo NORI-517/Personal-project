@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Booking System</title>
+	<link rel="stylesheet" href="navigationBar.css">
+	<link rel="stylesheet" href="bookingForm.css">
+	<script> src = "bookingForm.js" > </script>
+</head>
+
+<body>
+	<ul>
+		<li><a class="active" href="#home">Home</a></li>
+		<li><a href="#news">Book</a></li>
+		<li><a href="#news">Useful</a></li>
+		<li><a href="#contact">About</a></li>
+		<li style="float:right"><a href="https://www.w3schools.com/css/css_navbar_horizontal.asp">About</a></li>
+	</ul>
+	<form action="processBooking.php" method="post" onsubmit="event.preventDefault(); book();">
+		<label for="name">Name:</label>
+		<input type="text" id="name" name="name" required>
+
+		<label for="email">Email:</label>
+		<input type="email" id="email" name="email" required>
+
+		<label for="date">Date:</label>
+		<input type="date" id="date" name="date" required>
+
+		<input type="submit" value="Book">
+	</form>
+</body>
+
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="navigationBar.css">
+	<title>Booking Calendar</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			font-size: 16px;
+			background-color: #f2f2f2;
+		}
+		h1 {
+			text-align: center;
+			margin-top: 50px;
+			margin-bottom: 30px;
+		}
+		table {
+			margin: auto;
+			border-collapse: collapse;
+			box-shadow: 0 0 10px #ccc;
+			background-color: #fff;
+		}
+		td, th {
+			padding: 10px;
+			text-align: center;
+			border: 1px solid #ccc;
+		}
+		td.booked {
+			background-color: #FFC0CB;
+			cursor: pointer;
+		}
+		td:not(.booked):hover {
+			background-color: #f2f2f2;
+			cursor: pointer;
+		}
+	</style>
+	<script>
+		window.onload = function() {
+			// Get all the table cells
+			var cells = document.querySelectorAll("td:not(.booked)");
+			
+			// Add click event listener to each cell
+			for (var i = 0; i < cells.length; i++) {
+				cells[i].addEventListener("click", function() {
+					// Remove "selected" class from all cells
+					for (var j = 0; j < cells.length; j++) {
+						cells[j].classList.remove("selected");
+					}
+					
+					// Add "selected" class to the clicked cell
+					this.classList.add("selected");
+					
+					// Show booking details if cell is booked
+					if (this.classList.contains("booked")) {
+						alert("This date is already booked.");
+						// Replace alert with code to display booking details
+					}
+				});
+			}
+		}
+	</script>
+</head>
+<body>
+	<h1>Booking Calendar</h1>
+	<table>
+		<thead>
+			<tr>
+				<th>Mon</th>
+				<th>Tue</th>
+				<th>Wed</th>
+				<th>Thu</th>
+				<th>Fri</th>
+				<th>Sat</th>
+				<th>Sun</th>
+			</tr>
+		</thead>
+		<tbody></tbody>
+    </table>
+	<script>
+		window.onload = function() {
+		  // Get current date
+		  var date = new Date();
+		  var month = date.getMonth();
+		  var year = date.getFullYear();
+		  var firstDay = new Date(year, month, 1);
+		  var startingDay = firstDay.getDay();
+		  var monthLength = new Date(year, month + 1, 0).getDate();
+	  
+		  // Get table body
+		  var tbody = document.querySelector("tbody");
+	  
+		  // Add dates to the calendar
+		  var day = 1;
+		  for (var i = 0; i < 6; i++) { // 6 weeks per month
+			var row = document.createElement("tr");
+			for (var j = 0; j < 7; j++) { // 7 days per week
+			  var cell = document.createElement("td");
+			  if (day <= monthLength && (i > 0 || j >= startingDay)) {
+				cell.textContent = day++;
+			  }
+			  row.appendChild(cell);
+			}
+			tbody.appendChild(row);
+		  }
+		}
+	</script>
+	  
+	<script>
+		var table = document.querySelector('table'); // select the table
+	
+		table.addEventListener('click', function(event) {
+			if(event.target.tagName === 'TD' && !event.target.classList.contains('booked')) { // if a table cell is clicked and it's not booked
+				var date = event.target.innerText; // get the date from the cell
+				window.open('http://localhost:8080/Personal-project/bookingForm.html'); // open a new page, passing the date as a query parameter
+			}
+		});
+	</script>
+</html>
